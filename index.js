@@ -15,6 +15,8 @@ const {authMiddleware} = require('./Middleware/UserAuth')
 
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
+app.use(express.static('public'));
+
 app.set('view engine' , 'ejs')
 app.set('views' , path.resolve('./views'))
 const PORT = process.env.PORT || 8000
@@ -25,7 +27,7 @@ app.use('/user' , UserRouter )
 
 app.use('/home' , authMiddleware, HomeRoute )
 app.get('/' , (req ,res)=>{
-    res.json({message: 'Message from frontpage'})
+    res.render('FrontendPage')
 })
 
 ConnectMongoDB(process.env.MONGODBURL)
