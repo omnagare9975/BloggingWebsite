@@ -14,7 +14,6 @@ const UserSignup = async (req , res) =>{
     })
     
     try {
-        console.log(CreateUser)
         const SuccessMessage = `Singup Successful with name : ${CreateUser.name}`
         return res.render('ShowMessage' , {message: SuccessMessage})
     } catch (error) {
