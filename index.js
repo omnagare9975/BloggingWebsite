@@ -42,7 +42,7 @@ const storage = multer.diskStorage({
   
   // Create upload middleware
   const upload = multer({ storage: storage });
-app.get('/addblog' , (req ,res)=>{
+app.get('/addblog' , authMiddlewareForAddBlog , (req ,res)=>{
     res.render('add-blogs')
 
 })
