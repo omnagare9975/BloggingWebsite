@@ -16,7 +16,7 @@ spec:
     spec: 
       containers:
         - name: my-container
-          image: omnagare/blogwebodm1:latest
+          image: omnagare/blogwebodm2:latest
           ports:
             - containerPort: 8080
           env:
