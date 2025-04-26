@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: blogodm-config
+data:
+  PORT: "8080"
+  MONGODBURL: "mongodb://mongodb-service:27017/blogodm"
