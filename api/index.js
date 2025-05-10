@@ -66,7 +66,7 @@ app.post('/addblog', upload.single('coverImage'), async (req, res) => {
             coverImage, // Make sure your BlogModel supports this field
         });
 
-        res.redirect('/show/blogs');
+        res.json(BlogCreated)
     } catch (error) {
         console.error('Error creating blog:', error);
         res.status(500).send('Internal Server Error');
@@ -80,7 +80,7 @@ app.get('/blog/:id', async (req, res) => {
       if (!blog) {
         return res.status(404).send('Blog not found');
       }
-      res.render('blog-detail', { blog });
+      res.json(blog)
     } catch (err) {
       console.error('Error fetching blog:', err);
       res.status(500).send('Error loading blog');
@@ -92,7 +92,7 @@ app.get('/blog/:id', async (req, res) => {
 app.get('/show/blogs', async (req, res) => {
     try {
       const blogs = await BlogModel.find() // Get blogs in descending order by creation date
-      res.render('showBlogs', { blogs });  // Render the 'blogs.ejs' page with the blogs data
+      res.json(blogs)
     } catch (err) {
       console.error('Error fetching blogs:', err);
       res.status(500).send('Error loading blogs');

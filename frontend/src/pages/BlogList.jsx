@@ -1,53 +1,49 @@
-import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import axios from 'axios'
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export default function BlogList() {
-  const [blogs, setBlogs] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [blogs, setBlogs] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        // Replace with your actual API endpoint
-        const response = await axios.get('/api/blogs')
-        setBlogs(response.data)
-      } catch (error) {
-        console.error('Error fetching blogs:', error)
-      } finally {
-        setLoading(false)
+        const res = await axios.get('http://localhost:8080/show/blogs');
+        setBlogs(res.data);
+      } catch (err) {
+        console.error('Error fetching blogs:', err);
       }
-    }
+    };
 
-    fetchBlogs()
-  }, [])
-
-  if (loading) {
-    return <div className="min-h-screen bg-black text-white flex items-center justify-center">Loading...</div>
-  }
+    fetchBlogs();
+  }, []);
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold text-purple-400 mb-8">All Blogs</h1>
-        
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {blogs.map(blog => (
-            <div key={blog._id} className="bg-zinc-800 p-6 rounded-xl shadow hover:shadow-purple-700/30 transition">
-              <h3 className="text-xl font-semibold text-white mb-2">{blog.title}</h3>
-              <p className="text-sm text-gray-400 mb-4">
-                {blog.content.substring(0, 100)}...
-              </p>
-              <Link 
-                to={`/blog/${blog._id}`} 
-                className="text-purple-400 font-medium hover:underline"
-              >
-                Read more →
-              </Link>
-            </div>
-          ))}
+    <div className="p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {blogs.map((blog) => (
+        <div
+          key={blog._id}
+          className="border border-gray-300 rounded-md bg-white cursor-pointer hover:shadow-md transition"
+          onClick={() => navigate(`/blog/${blog._id}`)}
+        >
+          {blog.coverImage && (
+            <img
+              src={`http://localhost:8080/uploads/${blog.coverImage}`}
+              alt="Cover"
+              className="w-full h-40 object-cover rounded-t-md"
+            />
+          )}
+          <div className="p-3">
+            <h2 className="text-lg font-medium text-gray-800 mb-1">{blog.title}</h2>
+            <p className="text-sm text-gray-600">
+              {blog.content.length > 80
+                ? blog.content.slice(0, 80) + '...'
+                : blog.content}
+            </p>
+          </div>
         </div>
-      </div>
+      ))}
     </div>
-  )
+  );
 }
