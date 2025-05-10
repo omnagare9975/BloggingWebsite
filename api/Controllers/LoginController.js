@@ -22,7 +22,7 @@ const LoginFindUser = async (req ,res) =>{
 
     if (UserPss){
         res.cookie('token' , Token)
-       return res.render('HomePage')
+       return res.json({message: 'Login Successful'})
        
     }else{
         res.render('LoginFailed' , {message: `Wrong Password Pls Try Again`})

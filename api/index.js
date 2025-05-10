@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 app.use(express.json())
 const path = require('path')
+const cors = require('cors');
 app.use(express.urlencoded({extended:false}))
 const cookieParser = require('cookie-parser');
 const multer = require('multer')
@@ -28,6 +29,14 @@ const PORT = process.env.PORT || 8000
 const BlogModel = require('./Models/BlogModel');
 
 
+const corsOptions = {
+  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+};
+
+app.use(cors(corsOptions));
 
 
 const storage = multer.diskStorage({

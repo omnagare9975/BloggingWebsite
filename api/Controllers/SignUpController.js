@@ -4,6 +4,14 @@ const bcrypt  = require('bcrypt')
 const UserSignup = async (req , res) =>{
     const {name , email , password}  =  req.body
 
+
+    const emailAlready = await UserModel.findOne({email})
+
+    if (emailAlready){
+        return res.render('ShowMessage' , {message: 'Email Already exist...Try new'})
+
+    }
+
     const GenSalt = bcrypt.genSaltSync(10)
     const hashedPass = bcrypt.hashSync(password , GenSalt)
 
@@ -14,9 +22,9 @@ const UserSignup = async (req , res) =>{
     })
     
     try {
-        const SuccessMessage = `Singup Successful with name : ${CreateUser.name}`
-        return res.render('ShowMessage' , {message: SuccessMessage})
-    } catch (error) {
+           res.status(201).json({ message: 'Signup successful!' });
+    }
+    catch (error) {
         return res.send(`Internal Server Error ${error} `)
     }
 }
