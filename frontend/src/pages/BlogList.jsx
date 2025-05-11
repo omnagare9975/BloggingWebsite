@@ -32,7 +32,7 @@ export default function BlogList() {
           <img 
             src={`${import.meta.env.VITE_API_BASE_URL}/uploads/${blog.coverImage}`}
             alt="Cover"
-            className="w-40 h-28 object-cover rounded-md"
+            className="w-100 h-28 object-cover rounded-md"
           />
 
 

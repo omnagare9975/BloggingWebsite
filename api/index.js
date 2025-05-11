@@ -29,15 +29,15 @@ const PORT = process.env.PORT || 8000
 const BlogModel = require('./Models/BlogModel');
 
 
-const corsOptions = {
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
-};
+// const corsOptions = {
+//   origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+//   allowedHeaders: ['Content-Type', 'Authorization'],
+//   credentials: true
+// };
 
-app.use(cors(corsOptions));
-
+// app.use(cors(corsOptions));
+app.use(cors())
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {

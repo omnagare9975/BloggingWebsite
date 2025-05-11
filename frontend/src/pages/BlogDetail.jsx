@@ -38,9 +38,9 @@ export default function BlogDetail() {
 
        {blog.coverImage && (
          <img 
-          src={`/uploads/${blog.coverImage}`} 
+          src={`${import.meta.env.VITE_API_BASE_URL}/uploads/${blog.coverImage}`} 
           alt={blog.title} 
-          className="mt-6 rounded-md w-40 h-28 object-cover"
+          className="mt-6 rounded-md w-100 h-28 object-cover"
         />
       )}
         

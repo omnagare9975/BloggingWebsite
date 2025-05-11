@@ -1,0 +1,7 @@
+apiversion: 'v1'
+services:
+  web:
+    container_name: 'blogwebfrontend'
+    build: .
+    ports:
+      - ""
