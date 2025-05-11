@@ -1,7 +1,36 @@
-apiversion: 'v1'
+version: 'v1'
 services:
   web:
     container_name: 'blogwebfrontend'
-    build: .
+    build:
+      context: ./frontend
+      args:
+        VITE_API_BASE_URL: http://localhost:8080
     ports:
-      - ""
+      - "80:80"
+    depends_on:
+      - backend
+
+  backend:
+    container_name: 'backendnodejs'
+    build: ./api
+    ports:
+      - "8080:8080"
+    environment:
+      - JWT_SECRET=omnagare
+      - PORT=8080
+      - MONGODBURL=mongodb://db:27017/blogwebsitewithreact
+    depends_on:
+      - db
+  
+
+  db:
+    container_name: 'db'
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+volumes:
+  mongodb_data:
