@@ -14,9 +14,9 @@ export default function Login() {
     e.preventDefault()
     setLoading(true)
     setError('')
-    
+    const UserLogin = `${import.meta.env.VITE_API_BASE_URL}/user/login`
     try {
-      const response = await axios.post('http://localhost:8080/user/login', {
+      const response = await axios.post(UserLogin, {
         email,
         password
       })

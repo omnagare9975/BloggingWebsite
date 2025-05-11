@@ -8,10 +8,12 @@ export default function BlogDetail() {
   const [blog, setBlog] = useState(null)
   const [loading, setLoading] = useState(true)
 
+  const GettheBlog = `${import.meta.env.VITE_API_BASE_URL}/blog/${id}`;
+
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/blog/${id}`)
+        const response = await axios.get(GettheBlog)
         setBlog(response.data)
       } catch (error) {
         console.error('Error fetching blog:', error)
@@ -34,13 +36,14 @@ export default function BlogDetail() {
           <p>{blog.content}</p>
         </div>
 
-        {blog.coverImage && (
-          <img 
-            src={`/uploads/${blog.coverImage}`} 
-            alt={blog.title} 
-            className="mt-6 rounded-lg w-full"
-          />
-        )}
+       {blog.coverImage && (
+         <img 
+          src={`/uploads/${blog.coverImage}`} 
+          alt={blog.title} 
+          className="mt-6 rounded-md w-40 h-28 object-cover"
+        />
+      )}
+        
       </div>
     </div>
   )

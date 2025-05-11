@@ -18,8 +18,9 @@ export default function Signup() {
     setError('')
     setMessage('')
     
+    const singnup = `${import.meta.env.VITE_API_BASE_URL}/user/signup`
     try {
-      const response = await axios.post('http://localhost:8080/user/signup', {
+      const response = await axios.post(singnup, {
         name,
         email,
         password

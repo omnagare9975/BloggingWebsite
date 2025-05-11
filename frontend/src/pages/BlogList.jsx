@@ -5,11 +5,12 @@ import axios from 'axios';
 export default function BlogList() {
   const [blogs, setBlogs] = useState([]);
   const navigate = useNavigate();
+  const ShowBlog = `${import.meta.env.VITE_API_BASE_URL}/show/blogs`;
 
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await axios.get('http://localhost:8080/show/blogs');
+        const res = await axios.get(ShowBlog);
         setBlogs(res.data);
       } catch (err) {
         console.error('Error fetching blogs:', err);
@@ -28,11 +29,13 @@ export default function BlogList() {
           onClick={() => navigate(`/blog/${blog._id}`)}
         >
           {blog.coverImage && (
-            <img
-              src={`http://localhost:8080/uploads/${blog.coverImage}`}
-              alt="Cover"
-              className="w-full h-40 object-cover rounded-t-md"
-            />
+          <img 
+            src={`${import.meta.env.VITE_API_BASE_URL}/uploads/${blog.coverImage}`}
+            alt="Cover"
+            className="w-40 h-28 object-cover rounded-md"
+          />
+
+
           )}
           <div className="p-3">
             <h2 className="text-lg font-medium text-gray-800 mb-1">{blog.title}</h2>

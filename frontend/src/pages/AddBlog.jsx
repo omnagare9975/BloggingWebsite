@@ -3,22 +3,29 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import '../App.css'
 
+
+
 export default function AddBlog({ setBlogs }) {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [coverImage, setCoverImage] = useState(null)
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
-
+  
+  const showblogs = `${import.meta.env.VITE_API_BASE_URL}/show/blogs`;
   // Function to fetch all blogs and update the state
   const fetchBlogs = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/show/blogs')
+      const response = await axios.get(showblogs)
       setBlogs(response.data)  // Update parent component with the new blog list
     } catch (error) {
       console.error('Error fetching blogs:', error)
     }
   }
+
+
+  
+  const addBlogUrl = `${import.meta.env.VITE_API_BASE_URL}/addblog`;
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -31,7 +38,7 @@ export default function AddBlog({ setBlogs }) {
       if (coverImage) formData.append('coverImage', coverImage)
 
       // Post the new blog
-      await axios.post('http://localhost:8080/addblog', formData, {
+      await axios.post(addBlogUrl, formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       })
 
