@@ -15,7 +15,7 @@ services:
     container_name: 'backendnodejs'
     build: ./api
     ports:
-      - "8080:8080"
+      - "3000:3000"
     environment:
       - JWT_SECRET=omnagare
       - PORT=3000
