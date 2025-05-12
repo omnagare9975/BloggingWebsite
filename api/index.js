@@ -51,10 +51,10 @@ const storage = multer.diskStorage({
   
   // Create upload middleware
   const upload = multer({ storage: storage });
-app.get('/addblog' , authMiddlewareForAddBlog , (req ,res)=>{
-    res.render('add-blogs')
+// app.get('/addblog' , authMiddlewareForAddBlog , (req ,res)=>{
+//     res.render('add-blogs')
 
-})
+// })
 app.post('/addblog', upload.single('coverImage'), async (req, res) => {
     const { title, content } = req.body;
     const coverImage = req.file ? req.file.filename : null;
@@ -115,7 +115,7 @@ app.use('/home' , authMiddleware, HomeRoute )
 
 
 app.get('/' , (req ,res)=>{
-    res.render('FrontendPage')
+    res.send('<h1> Backend Is Working Fine</h1> ')
 })
 
 ConnectMongoDB(process.env.MONGODBURL)

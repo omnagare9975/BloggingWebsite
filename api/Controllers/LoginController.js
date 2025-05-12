@@ -17,15 +17,15 @@ const LoginFindUser = async (req ,res) =>{
     
 
     
-    const Token = jwt.sign(UserObject , process.env.JWT_SECRET )
+    const token = jwt.sign(UserObject , process.env.JWT_SECRET )
 
 
     if (UserPss){
-        res.cookie('token' , Token)
-       return res.json({message: 'Login Successful'})
+        // res.cookie('token' , Token)
+       return res.json({message: 'Login Successful' , token})
        
     }else{
-        res.render('LoginFailed' , {message: `Wrong Password Pls Try Again`})
+        // res.render('LoginFailed' , {message: `Wrong Password Pls Try Again`})
     }
 }
 

@@ -8,8 +8,7 @@ const UserSignup = async (req , res) =>{
     const emailAlready = await UserModel.findOne({email})
 
     if (emailAlready){
-        return res.render('ShowMessage' , {message: 'Email Already exist...Try new'})
-
+        return res.json({message: 'email already exist'})
     }
 
     const GenSalt = bcrypt.genSaltSync(10)

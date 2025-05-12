@@ -19,7 +19,7 @@ services:
     environment:
       - JWT_SECRET=omnagare
       - PORT=8080
-      - MONGODBURL=mongodb://db:27017/blogwebsitewithreact
+      - MONGODBURL=mongodb://db:27017/newblog
     depends_on:
       - db
   

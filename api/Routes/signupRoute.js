@@ -7,15 +7,15 @@ const StoreBlogInfo = require('../Controllers/addBlogContoller')
 
 UserRouter.post('/signup' ,  UserSignup)
 
-UserRouter.get('/signup' , (req , res)=>{
-    res.render('siginup')
-})
+// UserRouter.get('/signup' , (req , res)=>{
+//     res.render('siginup')
+// })
 
 
 UserRouter.post('/login' , LoginFindUser)
-UserRouter.get('/login' , (req ,res)=>{
-    res.render('Login')
-})
+// UserRouter.get('/login' , (req ,res)=>{
+//     res.render('Login')
+// })
 
 // UserRouter.get('/addblog' , (req , res)=>{
 //     res.render('add-blogs')
