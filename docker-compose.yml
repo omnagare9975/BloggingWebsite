@@ -5,7 +5,7 @@ services:
     build:
       context: ./frontend
       args:
-        VITE_API_BASE_URL: http://l3.109.16.101:8080
+        VITE_API_BASE_URL: http://l3.109.16.101:3000
     ports:
       - "80:80"
     depends_on:
