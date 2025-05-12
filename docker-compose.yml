@@ -2,10 +2,7 @@ version: '3'
 services:
   web:
     container_name: 'blogwebfrontend'
-    build:
-      context: ./frontend
-      args:
-        VITE_API_BASE_URL: http://l3.109.16.101:3000
+    build: ./frontend
     ports:
       - "80:80"
     depends_on:
