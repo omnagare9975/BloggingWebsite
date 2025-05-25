@@ -8,7 +8,7 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <div className="container flex justify-between items-center py-4">
-        <Link to="/" className="header">Om Nagare Blog's</Link>
+        <Link to="/" className="header">Om Nagare Blog's Web </Link>
 
         {/* Desktop Navigation */}
         <div className="desktop-nav">
