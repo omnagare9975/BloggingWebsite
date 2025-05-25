@@ -18,7 +18,7 @@ export default function App() {
   // Fetch blogs from the server when the app loads or when a new blog is added
   const fetchBlogs = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/show/blogs')
+      const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/show/blogs`)
       setBlogs(response.data)  // Update state with the latest blogs
     } catch (error) {
       console.error('Error fetching blogs:', error)

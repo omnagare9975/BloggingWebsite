@@ -1,0 +1,52 @@
+name: deploy on the s3
+
+
+on:
+  push:
+    branches:
+        - main
+  pull_request:
+    branches:
+        - main
+
+jobs:
+   build:
+    runs-on: ubuntu-latest
+    
+    steps:
+        - name: clone the repo
+          uses: actions/checkout@v4
+        
+        - name: setup the node
+          uses: actions/setup-node@v4
+          with:
+            node-version: 20
+
+        - name: install dependencies
+          run: | 
+            cd frontend
+            npm ci
+
+        - name: Copy the Environment envs
+          run: |
+            echo "VITE_API_BASE_URL=${{ secrets.VITE_API_BASE_URL }}" > .env 
+
+          working-directory: frontend
+            
+        - name: build the /dists
+          run: | 
+            cd frontend
+            npm run build
+               
+
+        - name: Deploy to S3
+          uses: jakejarvis/s3-sync-action@v0.5.1
+          with:
+            args: --acl public-read --delete
+          env:
+            AWS_S3_BUCKET: blogwebsitefrontend 
+            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            AWS_REGION: ap-south-1  
+            SOURCE_DIR: frontend/dist     
+  
