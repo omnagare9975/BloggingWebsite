@@ -2,8 +2,12 @@ const mongoose = require('mongoose')
 
 const ConnectMongoDB = (url) =>{
      mongoose.connect(url)
-     .then(()=> console.log(`MongoDB is Connected`))
-     .catch((error)=> console.log(`DB is Failed To Connect because ${error}`) )
+     .then(()=>{
+          console.log('DB IS CONNECTED')
+     })
+     .catch((err)=>{
+          console.log(`DB Failed to Connect ${err} `)
+     })
 }
 
 module.exports = {ConnectMongoDB}
