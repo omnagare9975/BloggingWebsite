@@ -7,7 +7,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="py-20 text-center">
         <div className="container">
-          <h1 className="text-gradient text-4xl font-bold mb-4">Om Nagare Blog's</h1>
+          <h1 className="text-gradient text-4xl font-bold mb-4">Om Nagare Blog's Deployed Using the CloudFront AWS</h1>
           <p className="text-secondary mb-6">Your daily dose of tech, tutorials, and thoughts.</p>
           <Link to="/blog" className="btn-primary">Explore Blogs</Link>
         </div>
