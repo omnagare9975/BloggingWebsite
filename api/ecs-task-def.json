@@ -1,5 +1,6 @@
 {
   "family": "FinalDEST",
+  "executionRoleArn": "arn:aws:iam::108782100108:role/allowECSToAccessECR",
   "networkMode": "awsvpc",
   "requiresCompatibilities": ["FARGATE"],
   "cpu": "256",
