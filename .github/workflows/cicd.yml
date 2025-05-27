@@ -4,9 +4,7 @@ name: deploy on the s3
 on:
   push:
     branches:
-        - main
-    paths-ignore:
-        - 'api/**'
+        - none
 
   pull_request:
     branches:
