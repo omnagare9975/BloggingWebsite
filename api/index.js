@@ -115,7 +115,7 @@ app.use('/home' , authMiddleware, HomeRoute )
 
 
 app.get('/' , (req ,res)=>{
-    res.send('<h1> Backend Is Working Fine</h1> ')
+    res.send('<h1> Backend Is Working Fine With ECS</h1> ')
 })
 
 ConnectMongoDB(process.env.MONGODBURL)
